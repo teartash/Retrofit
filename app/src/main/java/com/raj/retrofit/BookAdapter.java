@@ -1,6 +1,7 @@
 package com.raj.retrofit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
         return data.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder {
+    public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView txt_namebook,txt_author,txt_price;
         ImageView img_item;
@@ -59,6 +60,23 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.myViewHolder> 
             txt_author=itemView.findViewById(R.id.txt_author);
             txt_price=itemView.findViewById(R.id.txt_price);
             img_item=itemView.findViewById(R.id.img_item);
+
+           itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(context,DetailsBook.class);
+            intent.putExtra(DetailsBook.ID,data.get(getAdapterPosition()).getId());
+            intent.putExtra("name",data.get(getAdapterPosition()).getName());
+            intent.putExtra("desc",data.get(getAdapterPosition()).getDescription());
+            intent.putExtra("genre",data.get(getAdapterPosition()).getGenre());
+            intent.putExtra("author",data.get(getAdapterPosition()).getAuthor());
+            intent.putExtra("publish",data.get(getAdapterPosition()).getPublished());
+            intent.putExtra("price",data.get(getAdapterPosition()).getPrice());
+            intent.putExtra("image",data.get(getAdapterPosition()).getLink_image());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 }
