@@ -32,7 +32,7 @@ public class DetailsBook extends AppCompatActivity {
        // Toast.makeText(this,""+ id, Toast.LENGTH_LONG).show();
 
 
-        img_book=findViewById(R.id.img_book);
+
         txt_description=findViewById(R.id.txt_description);
         txt_author=findViewById(R.id.txt_author);
         txt_published=findViewById(R.id.txt_published);
@@ -46,7 +46,8 @@ public class DetailsBook extends AppCompatActivity {
         txt_author.setText(new StringBuilder("Author :  ")+ bundle.getString("author"));
         txt_published.setText(new StringBuilder("published :  ")+ bundle.getString("author"));
         txt_genre.setText(new StringBuilder("genre :  ")+ bundle.getString("genre"));
-        txt_description.setText(new StringBuilder("       Description \n\n")+ bundle.getString("desc"));
+        txt_price.setText( bundle.getString("price"));
+        txt_description.setText(new StringBuilder("          Description \n\n")+ bundle.getString("desc"));
         Picasso.get().load(bundle.getString("image")).into(img_book);
 
 
